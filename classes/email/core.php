@@ -12,7 +12,7 @@ class Email_Core {
   /**
    * @var  Swiftmailer  Holds Swiftmailer instance
    */
-	protected static $_mail;
+	protected static $mail;
 
 	/**
 	 * Creates a SwiftMailer instance.
