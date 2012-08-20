@@ -71,10 +71,11 @@ class Email_Core {
    * @param   string        Message subject
    * @param   string        Message body
    * @param   boolean       Send email as HTML
+   * @param   string        Reply to
    * @return  integer       Number of emails sent
    * @throws  Http_Exception_408  If connecting to the mailserver is timed-out
    */
-  public static function send($to, $from, $subject, $body, $html = FALSE)
+  public static function send($to, $from, $subject, $body, $html = FALSE, $replyto = null)
   {
     // Connect to SwiftMailer
     (self::$_mail === NULL) AND self::connect();
@@ -131,6 +132,18 @@ class Email_Core {
     {
       // From with a name
       $message->setFrom($from[0], $from[1]);
+    }
+
+    if (!is_null($replyto))
+    {
+      if (is_string($replyto))
+      {
+        $message->setReplyTo($replyto);
+      }
+      elseif (is_array($replyto))
+      {
+        $message->setReplyTo($replyto[0], $replyto[1]);
+      }
     }
 
     try
