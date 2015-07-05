@@ -140,7 +140,7 @@ class Email_Core {
     catch (Swift_SwiftException $e)
     {
       // Throw Kohana Http Exception
-      throw Http_Exception::factory(408, 'Connecting to mailserver timed out: :message', array(
+      throw HTTP_Exception::factory(408, 'Connecting to mailserver timed out: :message', array(
         ':message' => $e->getMessage()
       ));
     }
